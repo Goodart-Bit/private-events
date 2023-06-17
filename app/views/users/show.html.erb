@@ -1,0 +1,12 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb
+<% current_user.events.each do |event| %>
+  <h2>Title:/p></h2>
+  <p><%= event.name %><
+  <h2>Date:</h2>
+  <p><%= event.date %></p>
+  <h2>Description:</h2>
+  <p>
+    <%= event.description ? event.description : "This event has no given description"%>
+  </p>
+<% end %>
