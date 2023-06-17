@@ -1,14 +1,13 @@
-<h1>Users#show</h1>
+<h1>Welcome, <%= current_user.first_name %></h1>
 <%= link_to 'Create new event', new_event_path %>
-<p>Your created events are listed below</p>
+<h2>Here are your events</h2>
 <% current_user.events.each_with_index do |event, idx| %>
-  <p><b><%= "#{idx + 1}." %></b></p>
-  <h2>Title:</h2>
-  <p><%= event.name %></p>
-  <h2>Date:</h2>
-  <p><%= event.date %></p>
-  <h2>Description:</h2>
   <p>
-    <%= event.description ? event.description : "This event has no given description"%>
+    <b><%= "#{idx + 1}." %></b>
   </p>
+  <%= render "events/partials/event_info", event: event %>
+  <%= link_to 'Info', event %>
+  <%= link_to 'Delete', event, data: { "turbo-method": :delete,
+                                       turbo_confirm: 'Are you sure?' }%>
+  <hr>
 <% end %>
