@@ -11,13 +11,19 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.build event_params
     if @event.save
-      redirect_to users_show_path, notice: 'Event created successfully'
+      redirect_to @event, notice: 'Event created successfully'
     else
       render new_event_path(@event), alert: 'Something went wrong'
     end
   end
 
   def show
+    @event = Event.find(params[:id])
+  end
+
+  def destroy
+    Event.delete(params[:id])
+    redirect_to users_show_path, notice: "Event #{params[:id]} deleted successfully"
   end
 
   private
