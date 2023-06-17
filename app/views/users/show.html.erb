@@ -1,8 +1,9 @@
 <h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb
-<% current_user.events.each do |event| %>
-  <h2>Title:/p></h2>
-  <p><%= event.name %><
+<p>Your created events are listed below</p>
+<% current_user.events.each_with_index do |event, idx| %>
+  <p><b><%= "#{idx + 1}." %></b></p>
+  <h2>Title:</h2>
+  <p><%= event.name %></p>
   <h2>Date:</h2>
   <p><%= event.date %></p>
   <h2>Description:</h2>
