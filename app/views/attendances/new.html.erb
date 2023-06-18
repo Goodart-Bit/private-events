@@ -1,0 +1,7 @@
+<h1>Attendance list of event: <%= @event.name %></h1>
+<p>You can setup your invitations in this page</p>
+<%= form_with url: attendances_path, data: { 'turbo-method': :post } do |f| %>
+  <% feasible_guests = current_user.peers %>
+  <%= f.collection_check_boxes 'attendance[guest_ids]', feasible_guests, :id, :email %><br>
+  <%= f.submit "Send" %>
+<% end %>

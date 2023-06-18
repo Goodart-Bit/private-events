@@ -1,13 +1,20 @@
 <h1>Welcome, <%= current_user.first_name %></h1>
+<%= link_to 'Logout', destroy_user_session_path, data: { 'turbo-method': :delete,
+                                                         turbo_confirm: 'Are you sure?' } %>
+<br>
 <%= link_to 'Create new event', new_event_path %>
-<h2>Here are your events</h2>
-<% current_user.events.each_with_index do |event, idx| %>
-  <p>
-    <b><%= "#{idx + 1}." %></b>
-  </p>
-  <%= render "events/partials/event_info", event: event %>
-  <%= link_to 'Info', event %>
-  <%= link_to 'Delete', event, data: { "turbo-method": :delete,
-                                       turbo_confirm: 'Are you sure?' }%>
-  <hr>
+<% user_events = current_user.events %>
+<% unless user_events.empty? %>
+  <h2>Here are your events</h2>
+  <% user_events.each_with_index do |event, idx| %>
+    <p>
+      <b><%= "#{idx + 1}." %></b>
+    </p>
+    <%= render "events/partials/event_info", event: event %>
+    <%= link_to 'Info', event %>
+    <%= link_to 'Delete', event, data: { "turbo-method": :delete,
+                                         turbo_confirm: 'Are you sure?' }%>
+    <%= link_to 'Invite people', setup_attendances_path(event.id) %>
+    <hr>
+  <% end %>
 <% end %>
