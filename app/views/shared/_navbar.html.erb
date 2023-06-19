@@ -1,0 +1,15 @@
+<ul id="navbar">
+  <li>
+    <span>Private Events</span>
+  </li>
+  <li>
+    <%= link_to 'Home', root_path %>
+  </li>
+  <li>
+    <%= link_to 'My events', users_show_path %>
+  </li>
+  <li>
+    <%= link_to 'Logout', destroy_user_session_path, data: { 'turbo-method': :delete,
+                                                             turbo_confirm: 'Are you sure?' } %>
+  </li>
+</ul>
