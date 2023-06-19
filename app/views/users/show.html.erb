@@ -18,3 +18,10 @@
     <hr>
   <% end %>
 <% end %>
+<% attended_events = current_user.attended_events %>
+<% unless attended_events.empty? %>
+  <h2>Attended events</h2>
+  <% attended_events.each do |event| %>
+    <p>• <%= "#{event.name}, on #{event.date}" %></p>
+  <% end %>
+<% end %>

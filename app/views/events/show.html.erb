@@ -1,2 +1,8 @@
 <%= render "events/partials/event_info", event: @event %>
+<h2>Attendees</h2>
+<% @event.attendees.each_with_index do |guest, idx| %>
+  <p>
+    <%= "#{idx + 1}. #{guest.email}" %>
+  </p>
+<% end %>
 <%= link_to 'Back to my events', users_show_path %>
