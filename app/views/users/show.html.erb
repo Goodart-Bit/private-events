@@ -21,7 +21,13 @@
 <% attended_events = current_user.attended_events %>
 <% unless attended_events.empty? %>
   <h2>Attended events</h2>
-  <% attended_events.each do |event| %>
-    <p>• <%= "#{event.name}, on #{event.date}" %></p>
+  <h3>Past events</h3>
+  <%= raw "<p>You haven't gone to any event yet</p>" if attended_events.past.empty? %>
+  <% attended_events.past.each do |event| %>
+    <p>• <%= "#{event.name}, was on #{event.date}" %></p>
+  <% end %>
+  <h3>Upcoming events</h3>
+  <% attended_events.upcoming.each do |event| %>
+    <p>• <%= "#{event.name}, scheduled for #{event.date}" %></p>
   <% end %>
 <% end %>
