@@ -26,6 +26,19 @@ class EventsController < ApplicationController
     redirect_to users_show_path, notice: "Event #{params[:id]} deleted successfully"
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    event = Event.find(params[:id])
+    if event.update event_params
+      redirect_to event, notice: 'Event edited successfully'
+    else
+      render edit_event_path(event), alert: 'Could not update event'
+    end
+  end
+
   private
 
   def event_params

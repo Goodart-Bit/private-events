@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'users/show'
-  resources :events, only: [:index, :new, :create, :show, :destroy]
+  resources :events, only: [:index, :new, :create, :show, :destroy, :edit, :update]
   root to: "events#index"
   get 'event=:event_id/setup_attendances', to: 'attendances#new', as: 'setup_attendances'
   get 'event=:event_id/attendances', to: 'attendances#index', as: 'attendances'
