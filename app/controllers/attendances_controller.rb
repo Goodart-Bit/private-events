@@ -19,6 +19,16 @@ class AttendancesController < ApplicationController
     end
   end
 
+  def destroy
+    begin
+      p params[:id]
+      Attendance.destroy(params[:id])
+      redirect_to users_show_path, notice: 'Your assistance was removed successfully'
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to users_show_path, alert: 'An error occurred during the deletion of this assistance'
+    end
+  end
+
   private
 
   def persisted_attendances(event_id, guests_ids)

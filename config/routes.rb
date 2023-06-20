@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'event=:event_id/setup_attendances', to: 'attendances#new', as: 'setup_attendances'
   get 'event=:event_id/attendances', to: 'attendances#index', as: 'attendances'
   post 'event=:event_id/attendances', to: 'attendances#create'
+  resources :attendances, only: [:destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
